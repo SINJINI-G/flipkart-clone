@@ -1,7 +1,8 @@
 import bgImage from "../assets/images/Untitled.jpeg";
 import React, { useRef, useState } from "react";
 import Auth from "../services/auth";
-import { Typography, Grid, Box, TextField, Button } from "@mui/material";
+import { Typography, Grid, Box, TextField, Button, IconButton,InputAdornment, Input, FormControl, InputLabel } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {useNavigate} from "react-router-dom"
 
 
@@ -20,6 +21,14 @@ const LogIn = () => {
         nav("/");
         //to do: redirect to the login page
     }
+
+    const [showPassword, setShowPassword] = React.useState(false);
+  
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
     
     return <>
 
@@ -91,13 +100,32 @@ const LogIn = () => {
                         style={{ width: 450, marginBottom: 10 }}
                     />
 
-                    <TextField
+                    {/* <TextField
                         label="Enter your password"
                         type="password"
                         variant="standard"
                         inputRef={password}
                         style={{ width: 450, marginBottom: 10 }}
+                    /> */}
+
+                    <FormControl sx={{ width: "450px", marginBottom: '10px' }} variant="standard">
+                    <InputLabel htmlFor="standard-adornment-password">Enter your password</InputLabel>
+                    <Input
+                        id="standard-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                        </InputAdornment>
+                        }
                     />
+                    </FormControl>
 
                     <Typography
                         variant="body1"

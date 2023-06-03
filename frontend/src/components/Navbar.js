@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import { Box, AppBar, Toolbar, IconButton, Typography, TextField, Button } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, TextField, Button, Select, MenuItem, InputLabel, FormControl } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = ({ setSearchQuery }) => (
-  <form>
+  <form style={{marginRight: 150} }>
     <TextField
       id="search-bar"
       className="text"
@@ -12,11 +12,13 @@ const SearchBar = ({ setSearchQuery }) => (
       }}
       // label="Enter a city name"
       variant="outlined"
-      placeholder="Search..."
+      placeholder="Search for products, brand and more"
       size="small"
       sx={{
         // "& .MuiInputLabel-root": {bgcolor: "white", color: 'white'},//styles the label
         bgcolor: "white",
+        width: 500,
+        height: 35,
         "& .MuiOutlinedInput-root": {
           "& > fieldset": { border: "none" },
         },
@@ -25,7 +27,7 @@ const SearchBar = ({ setSearchQuery }) => (
 
     />
     <IconButton type="submit" aria-label="search" sx={{bgcolor:"white", borderRadius: 0, "&:hover":{bgcolor: "white"} }}>
-      <SearchIcon style={{ fill: "#1976D2" }} />
+      <SearchIcon style={{ fill: "#1976D2", height: 19.5}} />
     </IconButton>
   </form>
 );
@@ -41,21 +43,41 @@ const Navbar = () => {
   // )
 
   return (
-    <Box sx={{ flexgrow: 1 }}>
-      <AppBar position="static" sx={{ textTransform: "capitalize", height: 55 }}>
-        <Toolbar>
+    <Box sx={{ flexgrow: 1  }}>
+      <AppBar position="static" sx={{ textTransform: "capitalize", height: 50, justifyContent:"center", alignItems:"center", backgroundColor: "#2874F0" }}>
+        <Toolbar >
 
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" marginRight={2}>
             Flipkart
           </Typography>
 
-          <SearchBar />
+          <SearchBar/>
 
 
-          <Button color="inherit">User</Button>
-          <Button color="inherit">Become a Seller</Button>
-          <Button color="inherit">More</Button>
-          <Button color="inherit">Cart</Button>
+          <Button color="inherit" sx={{marginRight:3}}>User</Button>
+          {/* <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Age" 
+            onChange={}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& > fieldset": { border: "none" },
+              },
+            }}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl> */}
+
+          <Button color="inherit" sx={{marginRight:3}}>Become a Seller</Button>
+          <Button color="inherit" sx={{marginRight:3}}>More</Button>
+          <Button color="inherit" sx={{marginRight:3}}>Cart</Button>
 
         </Toolbar>
       </AppBar>
