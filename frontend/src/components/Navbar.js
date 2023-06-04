@@ -1,6 +1,12 @@
+import * as React from 'react';
 import { Link } from "react-router-dom"
 import { Box, AppBar, Toolbar, IconButton, Typography, TextField, Button, Select, MenuItem, InputLabel, FormControl } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
+import CustomizedMenus from "./User";
+import CustomizedMenusforMore from "./More";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const SearchBar = ({ setSearchQuery }) => (
   <form style={{marginRight: 150} }>
@@ -19,6 +25,10 @@ const SearchBar = ({ setSearchQuery }) => (
         bgcolor: "white",
         width: 500,
         height: 35,
+        fontSize: 8,
+        textAlign: "center",
+        justifyContent: "center",
+        boxShadow: 5,
         "& .MuiOutlinedInput-root": {
           "& > fieldset": { border: "none" },
         },
@@ -27,10 +37,21 @@ const SearchBar = ({ setSearchQuery }) => (
 
     />
     <IconButton type="submit" aria-label="search" sx={{bgcolor:"white", borderRadius: 0, "&:hover":{bgcolor: "white"} }}>
-      <SearchIcon style={{ fill: "#1976D2", height: 19.5}} />
+      <SearchIcon style={{ fill: "#5D0170", height: 19.5}} />
     </IconButton>
   </form>
 );
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: 6,
+    top: 3,
+    border: `2px solid ${theme.palette.background.paper}`,
+    backgroundColor: "#F97132",
+    padding: '0 4px',
+    zIndex: 100,
+  },
+}));
 
 const Navbar = () => {
   // return (
@@ -43,8 +64,8 @@ const Navbar = () => {
   // )
 
   return (
-    <Box sx={{ flexgrow: 1  }}>
-      <AppBar position="static" sx={{ textTransform: "capitalize", height: 50, justifyContent:"center", alignItems:"center", backgroundColor: "#2874F0" }}>
+    <Box sx={{ flexgrow: 1, justifyContent: "center" }}>
+      <AppBar position="static" sx={{ height: 50, justifyContent:"center", alignItems:"center", backgroundColor: "#5D0170", height: "3.5rem" }}>
         <Toolbar >
 
           <Typography variant="h6" component="div" marginRight={2}>
@@ -52,32 +73,17 @@ const Navbar = () => {
           </Typography>
 
           <SearchBar/>
+          <CustomizedMenus/>
+          <Button color="inherit" sx={{marginRight:3, textTransform: "initial" }}>Become a Seller</Button>
+          <CustomizedMenusforMore/>
 
 
-          <Button color="inherit" sx={{marginRight:3}}>User</Button>
-          {/* <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age" 
-            onChange={}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& > fieldset": { border: "none" },
-              },
-            }}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl> */}
-
-          <Button color="inherit" sx={{marginRight:3}}>Become a Seller</Button>
-          <Button color="inherit" sx={{marginRight:3}}>More</Button>
-          <Button color="inherit" sx={{marginRight:3}}>Cart</Button>
+          <IconButton aria-label="cart">
+          <StyledBadge badgeContent={4} style={{color: "#ffffff"}}>
+            <ShoppingCartIcon />
+          </StyledBadge>
+          </IconButton>
+          <Button color="inherit" sx={{marginRight:3, marginLeft:-2, textTransform: "initial"}}>Cart</Button>
 
         </Toolbar>
       </AppBar>
