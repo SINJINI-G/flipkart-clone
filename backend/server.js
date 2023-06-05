@@ -1,3 +1,7 @@
+// import * as dotenv from "dotenv";
+import sendWelcomeMail from "./service/mail";
+// dotenv.config();
+
 const express = require("express")
 require('dotenv').config()
 const PORT = process.env.PORT || 5000
@@ -20,6 +24,8 @@ app.post("/signup", async (req, res) => {
     else{
         const newUser = new User({ name, email, pswd })
         await newUser.save()
+        let userName = newUser.name.split(' ')[0];
+        await sendWelcomeMail(userName, email);
         res.status(200).send("Signup Successful")
     }
 })
